@@ -26,6 +26,12 @@ resources:
           service_name: iam
           resource: Role
           path: Status.ACKResourceMetadata.ARN
+      PodIdentityAssociations:
+        set:
+        - ignore: true
+          method: Create
+        - ignore: true
+          method: ReadOne
     renames:
       operations:
         CreateAddon:

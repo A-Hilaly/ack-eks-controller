@@ -173,17 +173,6 @@ func (rm *resourceManager) sdkFind(
 	} else {
 		ko.Status.Owner = nil
 	}
-	if resp.Addon.PodIdentityAssociations != nil {
-		f10 := []*svcapitypes.AddonPodIdentityAssociations{}
-		for _, f10iter := range resp.Addon.PodIdentityAssociations {
-			f10elem := &svcapitypes.AddonPodIdentityAssociations{}
-			f10elem = *f10iter
-			f10 = append(f10, f10elem)
-		}
-		ko.Spec.PodIdentityAssociations = f10
-	} else {
-		ko.Spec.PodIdentityAssociations = nil
-	}
 	if resp.Addon.Publisher != nil {
 		ko.Status.Publisher = resp.Addon.Publisher
 	} else {
@@ -352,17 +341,6 @@ func (rm *resourceManager) sdkCreate(
 		ko.Status.Owner = resp.Addon.Owner
 	} else {
 		ko.Status.Owner = nil
-	}
-	if resp.Addon.PodIdentityAssociations != nil {
-		f10 := []*svcapitypes.AddonPodIdentityAssociations{}
-		for _, f10iter := range resp.Addon.PodIdentityAssociations {
-			f10elem := &svcapitypes.AddonPodIdentityAssociations{}
-			f10elem = *f10iter
-			f10 = append(f10, f10elem)
-		}
-		ko.Spec.PodIdentityAssociations = f10
-	} else {
-		ko.Spec.PodIdentityAssociations = nil
 	}
 	if resp.Addon.Publisher != nil {
 		ko.Status.Publisher = resp.Addon.Publisher

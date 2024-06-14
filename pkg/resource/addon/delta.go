@@ -81,6 +81,13 @@ func newResourceDelta(
 			delta.Add("Spec.Name", a.ko.Spec.Name, b.ko.Spec.Name)
 		}
 	}
+	if len(a.ko.Spec.PodIdentityAssociations) != len(b.ko.Spec.PodIdentityAssociations) {
+		delta.Add("Spec.PodIdentityAssociations", a.ko.Spec.PodIdentityAssociations, b.ko.Spec.PodIdentityAssociations)
+	} else if len(a.ko.Spec.PodIdentityAssociations) > 0 {
+		if !reflect.DeepEqual(a.ko.Spec.PodIdentityAssociations, b.ko.Spec.PodIdentityAssociations) {
+			delta.Add("Spec.PodIdentityAssociations", a.ko.Spec.PodIdentityAssociations, b.ko.Spec.PodIdentityAssociations)
+		}
+	}
 	if ackcompare.HasNilDifference(a.ko.Spec.ResolveConflicts, b.ko.Spec.ResolveConflicts) {
 		delta.Add("Spec.ResolveConflicts", a.ko.Spec.ResolveConflicts, b.ko.Spec.ResolveConflicts)
 	} else if a.ko.Spec.ResolveConflicts != nil && b.ko.Spec.ResolveConflicts != nil {
